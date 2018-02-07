@@ -200,7 +200,7 @@ done
 
 # 2.2, count distri after removing mapQ=0 (bwa would assign those reads to dif chr, and results in unreliable number)
 samtools view -h 'Trimed_'$name'.bam' > input.sam
-awk '$5>0' input.sam | sed '/@/d' - | cat <(grep '@' input.sam) - > output.sam
+awk '$5>0' input.sam | sed '/^@/d' - | cat <(grep '^@' input.sam) - > output.sam
 rm input.sam
 
 # all alignment with mapQ > 0, exact same with samtools idxstats
